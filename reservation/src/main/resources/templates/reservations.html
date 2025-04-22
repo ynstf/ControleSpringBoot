@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="template"
+>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>List Reservations</title>
+    <!-- Bootstrap CSS from WebJar -->
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.3.0/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap-icons/1.11.3/font/bootstrap-icons.css}">
+</head>
+<body>
+
+<div layout:fragment="content">
+    <div class="container mt-4">
+        <h2 class="mb-3">List Reservations</h2>
+        <form th:action="@{/reservations}" method="get" class="row g-2 align-items-center mb-3">
+            <div class="col-auto">
+                <label for="date" class="col-form-label">Date:</label>
+            </div>
+            <div class="col-auto">
+                <input type="date" id="date" name="date" th:value="${date}" class="form-control"/>
+            </div>
+            <div class="col-auto">
+                <button type="submit" class="btn btn-info">
+                    <i class="bi bi-search"></i>
+                </button>
+            </div>
+        </form>
+
+        <table class="table table-striped table-bordered">
+            <thead class="table-dark">
+            <tr>
+                <th>ID</th>
+                <th>Date</th>
+                <th>Type</th>
+                <th>Durée</th>
+                <th>Coût</th>
+                <th>État</th>
+                <th>Entreprise</th>
+                <th>Delete</th>
+                <th>Edit</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="r : ${reservationList}">
+                <td th:text="${r.id}"></td>
+                <td th:text="${r.dateReservation}"></td>
+                <td th:text="${r.typeReservation}"></td>
+                <td th:text="${r.dureeReservation}"></td>
+                <td th:text="${r.cout}"></td>
+                <td th:text="${r.etat}"></td>
+                <td th:text="${r.entreprise.nom}"></td>
+                <td>
+                    <a th:href="@{deleteReservation(id=${r.id},date=${date},page=${currentPage})}"
+                       class="btn btn-danger">
+                        <i class="bi bi-trash"></i>
+                    </a>
+                </td>
+                <td>
+                    <a th:href="@{editReservation(id=${r.id},date=${date},page=${currentPage})}"
+                       class="btn btn-success">
+                        <i class="bi bi-pen"></i>
+                    </a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <ul class="nav nav-pills">
+            <li th:each="pageNum, stat : ${pages}">
+                <a th:href="@{/reservations(page=${stat.index},date=${date})}"
+                   th:classappend="${currentPage == stat.index} ? 'btn btn-info ms-1' : 'btn btn-outline-info ms-1'"
+                   th:text="${stat.index + 1}"></a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<!-- Bootstrap Bundle JS from WebJar -->
+<script th:src="@{/webjars/bootstrap/5.3.0/js/bootstrap.bundle.min.js}"></script>
+</body>
+</html>

@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="template"
+>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Form Réservation</title>
+    <!-- Bootstrap CSS from WebJar -->
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.3.0/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap-icons/1.11.3/font/bootstrap-icons.css}">
+</head>
+<body>
+
+<div layout:fragment="content">
+
+    <div class="col-md-6 offset-3">
+        <form method="post" th:action="@{/saveReservations}">
+            <!-- Hidden id for edit -->
+            <input type="hidden" id="id" name="id" th:value="${reservation.id}"/>
+
+            <div class="mb-3">
+                <label for="dateReservation" class="form-label">Date de réservation</label>
+                <input class="form-control"
+                       type="date"
+                       id="dateReservation"
+                       name="dateReservation"
+                       th:value="${reservation.dateReservation}">
+                <span class="text-danger" th:errors="${reservation.dateReservation}"></span>
+            </div>
+
+            <div class="mb-3">
+                <label for="typeReservation" class="form-label">Type de réservation</label>
+                <select class="form-select"
+                        id="typeReservation"
+                        name="typeReservation">
+                    <option th:each="t : ${types}"
+                            th:value="${t}"
+                            th:text="${t}"
+                            th:selected="${t} == ${reservation.typeReservation}"></option>
+                </select>
+                <span class="text-danger" th:errors="${reservation.typeReservation}"></span>
+            </div>
+
+            <div class="mb-3">
+                <label for="dureeReservation" class="form-label">Durée (heures)</label>
+                <input class="form-control"
+                       type="number"
+                       id="dureeReservation"
+                       name="dureeReservation"
+                       th:value="${reservation.dureeReservation}">
+                <span class="text-danger" th:errors="${reservation.dureeReservation}"></span>
+            </div>
+
+            <div class="mb-3">
+                <label for="cout" class="form-label">Coût (€)</label>
+                <input class="form-control"
+                       type="number"
+                       step="0.01"
+                       id="cout"
+                       name="cout"
+                       th:value="${reservation.cout}">
+                <span class="text-danger" th:errors="${reservation.cout}"></span>
+            </div>
+
+            <div class="mb-3">
+                <label for="etat" class="form-label">État de la réservation</label>
+                <select class="form-select"
+                        id="etat"
+                        name="etat">
+                    <option th:each="e : ${etats}"
+                            th:value="${e}"
+                            th:text="${e}"
+                            th:selected="${e} == ${reservation.etat}"></option>
+                </select>
+                <span class="text-danger" th:errors="${reservation.etat}"></span>
+            </div>
+
+            <div class="mb-3">
+                <label for="entreprise" class="form-label">Entreprise</label>
+                <select class="form-select"
+                        id="entreprise"
+                        name="entreprise.id">
+                    <option th:each="ent : ${entreprises}"
+                            th:value="${ent.id}"
+                            th:text="${ent.nom}"
+                            th:selected="${ent.id} == ${reservation.entreprise?.id}"></option>
+                </select>
+                <span class="text-danger" th:errors="${reservation.entreprise}"></span>
+            </div>
+
+            <button type="submit" class="btn btn-primary">
+                <i class="bi bi-save"></i> Enregistrer
+            </button>
+        </form>
+    </div>
+
+</div>
+
+<!-- Bootstrap Bundle JS from WebJar -->
+<script th:src="@{/webjars/bootstrap/5.3.0/js/bootstrap.bundle.min.js}"></script>
+</body>
+</html>

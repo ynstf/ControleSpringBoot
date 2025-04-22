@@ -1,0 +1,100 @@
+/* main.css */
+
+/* Page background and font reset */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f5f7fa;
+    color: #333;
+}
+
+/* Centered card-style form */
+form {
+    background: #ffffff;
+    max-width: 360px;
+    margin: 80px auto;
+    padding: 30px 25px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    box-sizing: border-box;
+}
+
+/* Title styling */
+h2 {
+    text-align: center;
+    margin-bottom: 24px;
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: #2c3e50;
+}
+
+/* Group spacing */
+form > div {
+    margin-bottom: 18px;
+}
+
+/* Labels */
+label {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 0.9rem;
+    color: #4a4a4a;
+}
+
+/* Text inputs */
+input[type="text"],
+input[type="password"] {
+    width: 100%;
+    padding: 10px 12px;
+    font-size: 0.95rem;
+    border: 1px solid #ccd0d5;
+    border-radius: 4px;
+    box-sizing: border-box;
+    transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus {
+    outline: none;
+    border-color: #409eff;
+    box-shadow: 0 0 0 2px rgba(64, 158, 255, 0.2);
+}
+
+/* Button */
+button {
+    width: 100%;
+    padding: 12px;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #fff;
+    background-color: #409eff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+}
+
+button:hover {
+    background-color: #1d79e6;
+}
+
+/* Error & success messages */
+.alert {
+    padding: 10px 12px;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    margin-bottom: 16px;
+}
+
+.alert-danger {
+    background-color: #fde2e1;
+    color: #d93025;
+    border: 1px solid #f5c2c0;
+}
+
+.alert-success {
+    background-color: #e6f4ea;
+    color: #188038;
+    border: 1px solid #c6e1cd;
+}

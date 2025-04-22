@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="template"
+>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Form Entreprises</title>
+  <!-- Bootstrap CSS from WebJar -->
+  <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.3.0/css/bootstrap.min.css}">
+  <link rel="stylesheet" th:href="@{/webjars/bootstrap-icons/1.11.3/font/bootstrap-icons.css}">
+</head>
+<body>
+
+<div layout:fragment="content">
+
+  <div class="col-md-6 offset-3">
+    <form method="post" th:action="@{/saveEntreprises}">
+      <div>
+        <label for="nom">Nom</label>
+        <input class="form-control"
+               type="text"
+               id="nom"
+               name="nom"
+               th:value="${entreprise.nom}">
+        <span class="text-danger" th:errors="${entreprise.nom}"></span>
+      </div>
+
+      <div>
+        <label for="email">Email</label>
+        <input class="form-control"
+               type="text"
+               id="email"
+               name="email"
+               th:value="${entreprise.email}">
+        <span class="text-danger" th:errors="${entreprise.email}"></span>
+      </div>
+
+      <div>
+        <label for="domaineActivite">Domaine Activite</label>
+        <input class="form-control"
+               type="text"
+               id="domaineActivite"
+               name="domaineActivite"
+               th:value="${entreprise.domaineActivite}">
+        <span class="text-danger" th:errors="${entreprise.domaineActivite}"></span>
+      </div>
+
+      <div>
+        <label for="username">username</label>
+        <input class="form-control"
+               type="text"
+               id="username"
+               name="username"
+               th:value="${entreprise.username}">
+        <span class="text-danger" th:errors="${entreprise.username}"></span>
+      </div>
+
+
+
+      <button type="submit" class="btn btn-primary">Enregistrer</button>
+    </form>
+  </div>
+
+
+
+</div>
+
+<!-- Bootstrap Bundle JS from WebJar -->
+<script th:src="@{/webjars/bootstrap/5.3.0/js/bootstrap.bundle.min.js}"></script>
+</body>
+</html>
